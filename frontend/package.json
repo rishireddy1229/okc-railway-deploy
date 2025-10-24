@@ -7,7 +7,7 @@
   },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && ng serve",
     "build": "ng build --configuration production --output-hashing none",
     "test": "ng test",
     "lint": "ng lint",

@@ -1,0 +1,6 @@
+Prompt: "Fixing npm errors during Angular CLI install"
+   Model: ChatGPT 5
+Prompt: "What are steps to deploy Django and Angular app on Railway with PostgreSQL"
+   Model: ChatGPT 5
+Prompt: "What PostgreSQL command exports a database to a .psql file"
+   Model: ChatGPT 5

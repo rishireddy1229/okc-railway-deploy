@@ -2,13 +2,51 @@ import json
 import os
 import random
 
-from app.dbmodels import models
+from app.dbmodels.models import Shot, Pass, Turnover, Player
+from collections import defaultdict
 
 def get_player_summary_stats(player_id: str):
     # TODO: Complete API response, replace placeholder below with actual implementation that sources data from database
-    with open(os.path.dirname(os.path.abspath(__file__)) + '/sample_summary_data/sample_summary_data.json') as sample_summary:
-        data = json.load(sample_summary)
-    return data
+    play_types = ['pickAndRoll', 'isolation', 'postUp', 'offBallScreen']
+
+    result = defaultdict(lambda: {
+        "totalShotAttempts": 0,
+        "totalPoints": 0,
+        "totalPasses": 0,
+        "totalTurnovers": 0,
+        "shots": [],
+        "passes": [],
+        "turnovers": []
+    })
+
+    shots = Shot.objects.filter(player_id=player_id)
+    for shot in shots:
+        play = shot.play_type
+        if play not in play_types:
+            continue
+        result[play]["totalShotAttempts"] += 1
+        result[play]["totalPoints"] += shot.points
+        result[play]["shots"].append({"x": shot.x, "y": shot.y})
+
+    
+    passes = Pass.objects.filter(player_id=player_id)
+    for pas in passes:
+        play = pas.play_type
+        if play not in play_types:
+            continue
+        result[play]["totalPasses"] += 1
+        result[play]["passes"].append({"x": pas.x, "y": pas.y})
+
+
+    turnovers = Turnover.objects.filter(player_id=player_id)
+    for turnover in turnovers:
+        play = turnover.play_type
+        if play not in play_types:
+            continue
+        result[play]["totalTurnovers"] += 1
+        result[play]["turnovers"].append({"x": turnover.x, "y": turnover.y})
+
+    return result
 
 
 def get_ranks(player_id: str, player_summary: dict):

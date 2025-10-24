@@ -1,0 +1,8 @@
+The database architecture for this project is built using a normalized PostgreSQL schema named `app`. The schema includes five main tables: `Player`, `Game`, `Shot`, `Pass`, and `Turnover`.
+
+- The `Player` table holds data for each player (e.g., name, team, ID).
+- The `Game` table contains game-specific data (e.g., date, teams, and identifiers).
+- The `Shot`, `Pass`, and `Turnover` tables store individual in-game events and are linked to both the `Player` and `Game` tables via foreign keys.
+- These event tables also include contextual details such as x/y coordinates and action types (e.g., isolation, post-up, pick & roll).
+
+This architecture enables efficient aggregation of player stats across games and supports flexible querying for individual or aggregate analytics. The database was loaded using Django models and migrations, ensuring schema consistency and ease of updates.

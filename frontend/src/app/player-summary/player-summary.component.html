@@ -1,1 +1,15 @@
-<div class="placeholder">Place your content here!</div>
+<div *ngIf="playerSummary">
+  <h2>Player Summary Ranks</h2>
+  <ul>
+    <li>Total Shot Attempts Rank: {{ playerSummary.totalShotAttemptsRank }}</li>
+    <li>Total Points Rank: {{ playerSummary.totalPointsRank }}</li>
+    <li>Total Passes Rank: {{ playerSummary.totalPassesRank }}</li>
+    <li>Total Potential Assists Rank: {{ playerSummary.totalPotentialAssistsRank }}</li>
+    <li>Total Turnovers Rank: {{ playerSummary.totalTurnoversRank }}</li>
+    <li>Total Passing Turnovers Rank: {{ playerSummary.totalPassingTurnoversRank }}</li>
+    <li>Pick and Roll Count Rank: {{ playerSummary.pickAndRollCountRank }}</li>
+    <li>Isolation Count Rank: {{ playerSummary.isolationCountRank }}</li>
+    <li>Post Up Count Rank: {{ playerSummary.postUpCountRank }}</li>
+    <li>Off Ball Screen Count Rank: {{ playerSummary.offBallScreenCountRank }}</li>
+  </ul>
+</div>
