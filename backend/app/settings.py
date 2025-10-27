@@ -89,17 +89,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'OPTIONS': {
-            'options': '-c search_path=app,public',
-        },
-        'NAME': 'okc',
-        'USER': 'okcapplicant',
-        'PASSWORD': 'rishi@db1',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    },
+    'default': dj_database_url.config(conn_max_age=600)
 }
 
 db_from_env = dj_database_url.config(conn_max_age=600)
