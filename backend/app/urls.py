@@ -13,9 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import re_path
+from django.urls import path, re_path
+from django.http import HttpResponse, HttpResponseRedirect
 from app.views import players
+from django.shortcuts import redirect
+
 
 urlpatterns = [
     re_path(r'^api/v1/playerSummary/(?P<playerID>[0-9]+)$', players.PlayerSummary.as_view(), name='player_summary'),
+
+    path('', lambda request: redirect('/api/v1/playerSummary/1', permanent=False)),
 ]
